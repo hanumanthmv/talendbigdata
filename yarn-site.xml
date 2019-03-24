@@ -1,0 +1,70 @@
+<configuration>
+<property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+  </property>
+<property>
+<name>yarn.nodemanager.resource.memory-mb</name>
+<value>8192</value>
+</property>
+<property>
+<name>yarn.scheduler.maximum-allocation-mb</name>
+<value>8192</value>
+</property>
+<property>
+  <name>yarn.nodemanager.delete.debug-delay-sec</name>
+  <value>1200</value>
+</property>
+<property>
+    <name>yarn.timeline-service.enabled</name>
+    <value>true</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.system-metrics-publisher.enabled</name>
+    <value>true</value>
+</property>
+<property>
+    <name>yarn.timeline-service.generic-application-history.enabled</name>
+    <value>true</value>
+</property>
+<property>
+    <name>yarn.timeline-service.http-cross-origin.enabled</name>
+    <value>true</value>
+</property>
+<property>
+    <name>yarn.timeline-service.hostname</name>
+    <value>talendbigdata</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.webapp.cross-origin.enabled</name>
+    <value>true</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.address</name>
+    <value>talendbigdata:8032</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.scheduler.address</name>
+    <value>talendbigdata:8030</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.resource-tracker.address</name>
+    <value>talendbigdata:8031</value>
+</property>
+<property>
+ <name>yarn.log-aggregation-enable</name>
+ <value>true</value>
+ </property>
+<property>
+  <name>yarn.nodemanager.recovery.enabled</name>
+  <value>true</value>
+</property>
+<property>
+  <name>yarn.nodemanager.address</name>
+  <value>talendbigdata:45454</value>
+</property>
+</configuration>

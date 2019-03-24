@@ -1,0 +1,27 @@
+<configuration>
+<property>
+<name>dfs.namenode.name.dir</name>
+<value>/home/hanumanth_mv/hadops/nn</value>
+</property>
+<property>
+<name>dfs.namenode.data.dir</name>
+<value>/home/hanumanth_mv/hadops/dn</value>
+</property>
+<property>
+<name>dfs.replication</name>
+<value>1</value>
+</property>
+<property>
+<name>dfs.permissions</name>
+<value>false</value>
+</property>
+<property>
+  <name>dfs.namenode.http-address</name>
+  <value>talendbigdata:50070</value>
+  <final>true</final>
+</property>
+<property>
+    <name>dfs.secondary.http.address</name>
+    <value>talendbigdata:50090</value>
+</property>
+</configuration>
