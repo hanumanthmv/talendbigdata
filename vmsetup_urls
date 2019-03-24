@@ -1,0 +1,100 @@
+mysql install
+sudo apt-get install mysql-server
+sudo apt-get install libmysql-java
+--connect mysql password mysql
+root@talendbigdata:~# mysql -u root -p
+Enter password:
+mysql> show databases;
+mysql> exit;
+
+create lib and links folder under /home/user/
+# java 8 download and soft link creation
+root@talendbigdata:/home/hanumanth_mv/lib# wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz?AuthParam=1553423758_52e3a89ab8c5587bcfdc166a52596fee
+root@talendbigdata:/home/hanumanth_mv/lib# ls
+jdk-8u201-linux-x64.tar.gz?AuthParam=1553423758_52e3a89ab8c5587bcfdc166a52596fee
+root@talendbigdata:/home/hanumanth_mv/lib# mv jdk-8u201-linux-x64.tar.gz\?AuthPa                                                                                                             ram\=1553423758_52e3a89ab8c5587bcfdc166a52596fee jdk-8u201-linux-x64.tar.gz
+root@talendbigdata:/home/hanumanth_mv/lib# chmod +x jdk-8u201-linux-x64.tar.gz
+root@talendbigdata:/home/hanumanth_mv/lib# tar -zxf jdk-8u201-linux-x64.tar.gz
+root@talendbigdata:/home/hanumanth_mv# cd links
+root@talendbigdata:/home/hanumanth_mv/links# ln -s /home/hanumanth_mv/lib/jdk1.8.0_201 java8
+root@talendbigdata:/home/hanumanth_mv/links# ls -n
+total 0
+lrwxrwxrwx 1 0 0 35 Mar 24 10:40 java8 -> /home/hanumanth_mv/lib/jdk1.8.0_201
+
+#Hadoop download and softlink creation
+--https://archive.apache.org/dist/hadoop/core/hadoop-3.1.1/
+root@talendbigdata:/home/hanumanth_mv/lib# wget https://archive.apache.org/dist/hadoop/core/hadoop-3.1.1/hadoop-3.1.1.tar.gz
+
+root@talendbigdata:/home/hanumanth_mv/lib# ls
+hadoop-3.1.1.tar.gz  jdk1.8.0_201  jdk-8u201-linux-x64.tar.gz
+root@talendbigdata:/home/hanumanth_mv/lib# chmod +x hadoop-3.1.1.tar.gz
+root@talendbigdata:/home/hanumanth_mv/lib# tar -zxf hadoop-3.1.1.tar.gz
+root@talendbigdata:/home/hanumanth_mv/lib# ls
+hadoop-3.1.1  hadoop-3.1.1.tar.gz  jdk1.8.0_201  jdk-8u201-linux-x64.tar.gz
+root@talendbigdata:/home/hanumanth_mv/lib# mv hadoop-3.1.1 hadoop311
+root@talendbigdata:/home/hanumanth_mv# cd links
+root@talendbigdata:/home/hanumanth_mv/links# ln -s /home/hanumanth_mv/lib/hadoop311 hadoop
+
+#Hive download and softlink creation
+--https://archive.apache.org/dist/hive/hive-3.1.1/
+root@talendbigdata:/home/hanumanth_mv/lib# wget https://archive.apache.org/dist/hive/hive-3.1.1/apache-hive-3.1.1-bin.tar.gz
+root@talendbigdata:/home/hanumanth_mv/lib# ls
+apache-hive-3.1.1-bin.tar.gz  hadoop311  hadoop-3.1.1.tar.gz  jdk1.8.0_201  jdk-8u201-linux-x64.tar.gz
+root@talendbigdata:/home/hanumanth_mv/lib# tar -zxf apache-hive-3.1.1-bin.tar.gz
+root@talendbigdata:/home/hanumanth_mv/lib# ls
+apache-hive-3.1.1-bin  apache-hive-3.1.1-bin.tar.gz  hadoop311  hadoop-3.1.1.tar.gz  jdk1.8.0_201  jdk-8u201-linux-x64.tar.gz
+root@talendbigdata:/home/hanumanth_mv/lib# mv apache-hive-3.1.1-bin hive311
+root@talendbigdata:/home/hanumanth_mv# cd links
+root@talendbigdata:/home/hanumanth_mv/links# ln -s /home/hanumanth_mv/lib/hive311 hive
+
+root@talendbigdata:~# vi .bashrc
+#end of the file add the follwoing lines
+export JAVA_HOME="/home/hanumanth_mv/links/java8"
+export HADOOP_HOME="/home/hanumanth_mv/links/hadoop"
+export HIVE_HOME="/home/hanumanth_mv/links/hive"
+export HADOOP_CONF_DIR="/home/hanumanth_mv/links/hadoop/etc/hadoop"
+export YARN_CONF_DIR="/home/hanumanth_mv/links/hadoop/etc/hadoop"
+export PATH=${PATH}:${JAVA_HOME}/bin:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:${HIVE_HOME}/bin
+
+root@talendbigdata:~# source ~/.bashrc
+
+root@talendbigdata:~# cd $HADOOP_HOME
+root@talendbigdata:/home/hanumanth_mv/links/hadoop# cd $HADOOP_CONF_DIR
+root@talendbigdata:/home/hanumanth_mv/links/hadoop/etc/hadoop# vi hdfs-site.xml
+root@talendbigdata:/home/hanumanth_mv/links/hadoop/etc/hadoop# cd /home/hanumanth_mv/
+root@talendbigdata:/home/hanumanth_mv# mkdir hadops
+root@talendbigdata:/home/hanumanth_mv# cd hadops/
+root@talendbigdata:/home/hanumanth_mv/hadops# ls
+root@talendbigdata:/home/hanumanth_mv/hadops# mkdir dn
+root@talendbigdata:/home/hanumanth_mv/hadops# mkdir nn
+root@talendbigdata:/home/hanumanth_mv/hadops# cd /home/hanumanth_mv/links/hadoop/etc/hadoop
+
+root@talendbigdata:/home/hanumanth_mv/links/hadoop/etc/hadoop# vi core-site.xml
+root@talendbigdata:/home/hanumanth_mv/links/hadoop/etc/hadoop# cd /home/hanumanth_mv/links/hadoop/etc/hadoop
+root@talendbigdata:/home/hanumanth_mv/links/hadoop/etc/hadoop# cd /home/hanumanth_mv/hadops/
+root@talendbigdata:/home/hanumanth_mv/hadops# mkdir tmp
+root@talendbigdata:/home/hanumanth_mv/hadops# ls
+dn  nn  tmp
+root@talendbigdata:/home/hanumanth_mv/hadops# cd /home/hanumanth_mv/links/hadoop/etc/hadoop
+
+root@talendbigdata:/home/hanumanth_mv/links/hadoop/etc/hadoop# vi mapred-site.xml
+root@talendbigdata:/home/hanumanth_mv/links/hadoop/etc/hadoop# pwd
+/home/hanumanth_mv/links/hadoop/etc/hadoop
+root@talendbigdata:/home/hanumanth_mv/links/hadoop/etc/hadoop# cd /home/hanumanth_mv/lib/hadoop311
+root@talendbigdata:/home/hanumanth_mv/lib/hadoop311# ls
+bin  etc  include  lib  libexec  LICENSE.txt  NOTICE.txt  README.txt  sbin  share
+root@talendbigdata:/home/hanumanth_mv/lib/hadoop311# mkdir mapred-local
+root@talendbigdata:/home/hanumanth_mv/lib/hadoop311# ls
+bin  etc  include  lib  libexec  LICENSE.txt  mapred-local  NOTICE.txt  README.txt  sbin  share
+root@talendbigdata:/home/hanumanth_mv/lib/hadoop311# cd /home/hanumanth_mv/links/hadoop/etc/hadoop
+
+root@talendbigdata:/home/hanumanth_mv/links/hadoop/etc/hadoop# vi yarn-site.xml
+root@talendbigdata:/home/hanumanth_mv/links/hadoop/etc/hadoop# vi hadoop-env.sh
+  end of the file add 
+  export HDFS_NAMENODE_USER="root"
+export HDFS_DATANODE_USER="root"
+export HDFS_SECONDARYNAMENODE_USER="root"
+export YARN_RESOURCEMANAGER_USER="root"
+export YARN_NODEMANAGER_USER="root"
+
+export JAVA_HOME="/home/hanumanth_mv/links/java8"
